@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  consul:
+    image: consul:latest
+    hostname: consul
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    command: "agent -dev -ui -client 0.0.0.0 -log-level info"
+
+  gateway:
+    build: gateway
+    hostname: gateway
+    ports:
+      - "8000:8000"
+    environment: &env
+      PORT: 8000
+      CONSUL_HTTP: http://consul:8500/v1
+      NODE_ENV: development
+    dns: consul
+    dns_search: service.consul
+    depends_on:
+      - consul
+
+  books:
+    build: books
+    hostname: books
+    ports:
+      - "8001:8000"
+    environment: *env
+    dns: consul
+    dns_search: service.consul
+    depends_on:
+      - consul

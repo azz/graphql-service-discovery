@@ -1,0 +1,12 @@
+{
+  "name": "@iress/graphql-book-service",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Lucas Azzola <lucas.azzola@iress.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "apollo-server": "^2.0.0-rc.8",
+    "graphql": "^0.13.2",
+    "node-fetch": "^2.1.2"
+  }
+}
