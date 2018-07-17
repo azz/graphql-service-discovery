@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   consul:
@@ -35,3 +35,12 @@ services:
     dns_search: service.consul
     depends_on:
       - consul
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet:  10.103.0.1/16
+        gateway: 10.103.0.1
