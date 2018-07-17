@@ -35,7 +35,8 @@ const run = async () => {
         new RenameTypes(type => `${name}_${type}`),
         new RenameRootFields((operation, field) => `${name}_${field}`)
       ]);
-      return makeRemoteExecutableSchema({ schema: transformedSchema, link });
+      // return makeRemoteExecutableSchema({ schema: transformedSchema, link });
+      return makeRemoteExecutableSchema({ schema, link });
     })
   );
 
